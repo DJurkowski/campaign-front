@@ -2,10 +2,17 @@
 
 .view-container {
   display: flex;
-  width: 100%;
+  width: 95%;
   height: 100%;
   max-width: 800px;
   max-height: 500px;
+
+  @media (max-width: 465px){
+    flex-direction: column;
+
+    width: 80%;
+  }
+
 }
 
 .sidebar {
@@ -18,6 +25,13 @@
 
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+
+  @media (max-width: 465px){
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 0;
+
+    width: 100%;
+  }
 }
 
 .project-menu {
@@ -26,7 +40,6 @@
   flex-direction: column;
   flex-grow: 1;
   overflow-y: auto;
-
 
   .project-item {
     display: flex;
@@ -69,6 +82,11 @@
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 20px 42px;
+
+  @media (max-width: 465px){
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 8px;
+  }
 
   .top-bar {
     position: absolute;
