@@ -1,0 +1,60 @@
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700|Nunito:400,700');
+
+$purple: #845EC2;
+$blue: #009EFA;
+$light-blue: #00D2FC;
+$light-green: #008E9B;
+$green: #4FFBDF;
+
+$primary: $purple;
+$family-sans-serif: 'Nunito', sans-serif;
+// $light: #fff;
+// $dark: #000;
+
+
+html {
+  background-image: linear-gradient(to right top, #845ec2, #6d78da, #508feb, #2da5f6, #00b9fc, #00c6fd, #00d2fd, #00ddfa, #00e5f6, #0eedf0, #32f4e8, #4ffbdf);
+}
+
+html, body {
+  height: 100%;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+
+  @media (max-width: 975px) {
+    margin-top: 55px;
+  }
+}
+
+.modal-box {
+  min-height: 200px;
+  width: 100%;
+  max-width: 580px;
+  background: white;
+  border-radius: 5px;
+  padding: 35px;
+}
+
+.title {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.white-box {
+  min-height: 300px;
+  width: 100%;
+  max-width: 380px;
+  background: white;
+  border-radius: 5px;
+  padding: 2px;
+}
