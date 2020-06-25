@@ -58,8 +58,8 @@
     }
 
     &.is-active {
-      background-color: #cff8ef;
-      color: $green;
+      background-color: $primary;
+      color: white;
     }
   }
 }
@@ -114,11 +114,13 @@
   margin-top: 10px;
   cursor: pointer;
 
+  box-shadow: 0 0 0 5px #eee;
+
   &:not(.complete){
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 
     &:hover {
-      box-shadow: 0 0 0 5px #eee;
+      box-shadow: 0 0 0 5px $light-blue;
 
       .campaign-buttons {
         opacity: 1;
@@ -143,6 +145,16 @@
 
     transition: opacity 0.3s, transform 0.3s;
     transform: scale(0.8);
+
+    .button {
+
+      &:hover {
+        color: white;
+        background: $light-blue;
+        border-color: white;
+      }
+
+    }
   }
 }
 
