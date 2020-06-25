@@ -10,12 +10,12 @@ export class ProjectService {
 
   constructor(private webRequestService: WebRequestService) { }
 
-  createProject(title: string): Observable<any> {
-    return this.webRequestService.post('/projects', { title });
+  createProject(name: string): Observable<any> {
+    return this.webRequestService.post('/projects', { name });
   }
 
-  editProject(id: string, title: string): Observable<any> {
-    return this.webRequestService.patch(`/projects/${id}`, {title});
+  editProject(id: string, name: string): Observable<any> {
+    return this.webRequestService.patch(`/projects/${id}`, {name});
   }
 
   getProjects(): Observable<any> {
