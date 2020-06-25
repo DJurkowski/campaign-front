@@ -1,0 +1,144 @@
+@import '../../../main-style.scss';
+
+.view-container {
+  display: flex;
+  width: 95%;
+  height: 100%;
+  max-width: 800px;
+  max-height: 80%;
+
+  @media (max-width: 670px) {
+    max-height: 85%;
+  }
+
+}
+
+.modal-box {
+  width: 95%;
+  height: 100%;
+  max-width: 800px;
+  padding-bottom: 40px;
+}
+
+.campaign-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+
+
+  box-shadow: 0 0 0 5px #eee;
+
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 0 0 5px $light-blue;
+
+    .campaign-item {
+      border-color: $light-blue;
+    }
+
+    .campaign-label {
+      border-color: #c0c0c0;
+    }
+
+    .campaign-buttons {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (max-width: 670px) {
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    .campaign-buttons {
+      margin-top: 10px;
+      align-self: flex-end;
+    }
+  }
+  @media (max-width: 550px) {
+    height: 80%;
+    overflow: scroll;
+
+  }
+
+}
+
+
+@mixin campaign-item-border {
+  border:5px solid #eee;
+  border-radius: 8px;
+  padding: 10px;
+  margin-right: 10px;
+  display: inline;
+  transition: border-color 0.2s ease
+}
+
+.campaign-item-content {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+
+
+  .campaign-label {
+    @include campaign-item-border();
+    width: 140px;
+    color: #a6a6a6;
+  }
+
+  .campaign-item {
+    @include campaign-item-border();
+    max-width: 250px;
+    word-wrap: break-word;
+  }
+
+  @media (max-width: 550px) {
+    flex-direction: column;
+
+
+    .campaign-label {
+      margin-bottom: 5px;
+    }
+  }
+
+}
+
+.campaign-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  opacity: 0;
+
+  transition: opacity 0.3s, transform 0.3s;
+  transform: scale(0.8);
+
+  @media (max-width: 670px) {
+    opacity: 1
+  }
+
+  .button {
+
+    &:hover {
+      color: white;
+      background: $primary;
+      border-color: white;
+    }
+  }
+}
+
+.back {
+
+  margin: 5px;
+  &:hover {
+    background: $light-blue;
+    color: white;
+    border: white;
+  }
+}
+
+
+

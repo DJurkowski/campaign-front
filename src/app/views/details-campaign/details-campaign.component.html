@@ -1,0 +1,39 @@
+
+<div class="centered-content">
+  <div class="view-container">
+    <div class="modal-box">
+      <h1 class="title has-text-primary">
+        Campaign
+      </h1>
+      <div *ngIf="campaign" class="campaign-content">
+        <div class="campaign-items">
+          <div class="campaign-item-content"><div class="campaign-label">Name</div><div class="campaign-item">{{campaign.name}}</div></div>
+          <div class="campaign-item-content"><div class="campaign-label">Keywords</div><div class="campaign-item">{{campaign.keywords}}{{campaign.keywords}}{{campaign.keywords}}{{campaign.keywords}}</div></div>
+          <div class="campaign-item-content"><div class="campaign-label">Bid amount</div><div class="campaign-item">{{campaign.bidAmount}} <span style="color:#a6a6a6">$</span></div></div>
+          <div class="campaign-item-content"><div class="campaign-label">Campaign fund</div><div class="campaign-item">{{campaign.fund}} <span style="color:#a6a6a6">$</span></div></div>
+          <div class="campaign-item-content"><div class="campaign-label">Status</div><div class="campaign-item"><span *ngIf="campaign.status">On</span><span *ngIf="!campaign.status">Off</span></div></div>
+          <div class="campaign-item-content"><div class="campaign-label">Town</div><div class="campaign-item">{{campaign.town}}</div></div>
+          <div class="campaign-item-content"><div class="campaign-label">Radius</div><div class="campaign-item">{{campaign.radius}} <span style="color:#a6a6a6">km</span></div></div>
+        </div>
+        <div class="campaign-buttons">
+          <button class="button" [routerLink]="['/lists', projectId, 'edit-campaign', campaign._id]">
+            <div class="icon">
+              <i class="fas fa-edit"></i>
+            </div>
+          </button>
+          <button class="button" (click)="onDeleteCampaignClick(campaign._id)" style="margin-left:5px;">
+            <div class="icon">
+              <i class="fas fa-trash"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="!campaign">
+        There is no campaign for this project
+      </div>
+        <button class="button back" routerLink='/projects'>Back</button>
+    </div>
+    <div>
+    </div>
+  </div>
+</div>
