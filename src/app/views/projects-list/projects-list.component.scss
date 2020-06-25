@@ -72,8 +72,6 @@
   }
 }
 
-
-
 .campaign-container {
   position: relative;
   display: flex;
@@ -150,7 +148,7 @@
 
       &:hover {
         color: white;
-        background: $light-blue;
+        background: $primary;
         border-color: white;
       }
 

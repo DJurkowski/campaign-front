@@ -42,7 +42,7 @@
       </div>
       <div *ngIf="campaigns">
         <div *ngIf="(campaigns.length == 0 )">
-          <p class="empty-state-text">There is no task <br/> Please go and create one</p>
+          <p class="empty-state-text">There is no compaign for this project <br/> Please go and create it</p>
           <button class="circle-add-button button is-primary" routerLink="./new-campaign">+</button>
         </div>
         <div class="campaign" *ngFor="let campaign of campaigns" >
@@ -52,7 +52,7 @@
             <p>Campaign town: <strong>{{campaign.town}}</strong></p>
           </div>
           <div class="campaign-buttons">
-            <button class="button">
+            <button class="button" [routerLink]="['campaign', campaign._id]">
               Details
             </button>
           </div>
