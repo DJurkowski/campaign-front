@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProjectsListComponent } from './views/projects-list/projects-list.component';
 import { NewProjectComponent } from './views/new-project/new-project.component';
+import { DetailsCampaignComponent } from './views/details-campaign/details-campaign.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectsListComponent,
-    NewProjectComponent
+    NewProjectComponent,
+    DetailsCampaignComponent
   ],
   imports: [
     BrowserModule,
