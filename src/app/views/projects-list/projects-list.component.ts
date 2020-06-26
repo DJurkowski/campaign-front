@@ -38,4 +38,11 @@ export class ProjectsListComponent implements OnInit {
     });
   }
 
+  onDeleteProjectClick() {
+    this.projectService.deleteProject(this.selectedProjectId).subscribe((res: any) => {
+      console.log(res);
+      this.router.navigate(['/projects']);
+    });
+  }
+
 }

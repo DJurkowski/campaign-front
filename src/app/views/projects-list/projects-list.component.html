@@ -30,11 +30,11 @@
           </div>
           <div class="dropdown-menu" id="dropdown-menu4" role="menu">
             <div class="dropdown-content">
-              <a class="dropdown-item">
-                Edit
+              <a [routerLink]="['edit']" class="dropdown-item">
+                Edit project
               </a>
-              <a class="dropdown-item has-text-danger">
-                Delete
+              <a (click)="onDeleteProjectClick()" class="dropdown-item has-text-danger">
+                Delete project
               </a>
             </div>
           </div>
@@ -43,9 +43,8 @@
       <div *ngIf="campaigns">
         <div *ngIf="(campaigns.length == 0 )">
           <p class="empty-state-text">There is no compaign for this project <br/> Please go and create it</p>
-          <button class="circle-add-button button is-primary" routerLink="./new-campaign">+</button>
         </div>
-        <div class="campaign" *ngFor="let campaign of campaigns" >
+        <div class="campaign" *ngFor="let campaign of campaigns" [routerLink]="['campaign', campaign._id]">
           <div class="campaign-text">
             <p>Campaign name: <strong>{{campaign.name}}</strong></p>
             <p>Campaign status: <strong *ngIf="campaign.status">On</strong><strong *ngIf="!campaign.status">Off</strong></p>
@@ -61,6 +60,9 @@
       </div>
      <div *ngIf="!campaigns">
        <p class="empty-state-text">Please select a project from the sidebar</p>
+      </div>
+      <div class="campaign-footer" *ngIf="(campaigns && campaigns.length == 0 )">
+        <button class="circle-add-button button is-primary" [routerLink]="['new-campaign']">+</button>
       </div>
     </div>
 
