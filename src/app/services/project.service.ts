@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { WebRequestService } from './web-request.service';
 import { Observable } from 'rxjs';
 import { Campaign } from './../models/campaign.module';
+import { FormCampaign } from './../models/formCampaign.module';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +23,15 @@ export class ProjectService {
     return this.webRequestService.get('/projects');
   }
 
+  getProject(id: string): Observable<any> {
+    return this.webRequestService.get(`/projects/${id}`);
+  }
+
   deleteProject(id: string) {
     return this.webRequestService.delete(`/projects/${id}`);
   }
 
-  createCampaign(projectId: string, campaign: Campaign): Observable<any> {
+  createCampaign(projectId: string, campaign: FormCampaign): Observable<any> {
     return this.webRequestService.post(`/projects/${projectId}/campaign`, campaign);
   }
 
