@@ -1,7 +1,7 @@
 export class Campaign {
   _id: string;
   name: string;
-  keywords: [];
+  keywords: string;
   bidAmount: number;
   fund: number;
   status: boolean;
