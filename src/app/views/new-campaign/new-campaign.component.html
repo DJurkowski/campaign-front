@@ -1,0 +1,80 @@
+<div class="centered-content">
+  <div class="modal-box">
+    <h2 class="title has-text-primary">
+      Create a new campaign
+    </h2>
+
+    <form [formGroup]="campaign" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label class="label">Name:</label>
+        <div class="control">
+          <input type="text" class="input" formControlName="name" />
+          <p class="help is-danger" *ngIf="(name.dirty || name.touched) && name.invalid && name.errors.required">Name is required</p>
+        </div>
+      </div>
+
+        <div class="field">
+          <label class="label">Keywords:</label>
+          <div class="control">
+            <input type="text" class="input" formControlName="keywords">
+            <p class="help is-danger" *ngIf="(keywords.dirty || keywords.touched) && keywords.invalid && keywords.errors.required">Keywords are required</p>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Bid Amount:</label>
+          <div class="control">
+            <input type="number" class="input" formControlName="bidAmount">
+            <p class="help is-danger" *ngIf="(bidAmount.dirty || bidAmount.touched) && bidAmount.invalid && bidAmount.errors.required">Bid amount is required</p>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Campaign Fund:</label>
+          <div class="control">
+            <input type="number" class="input" formControlName="fund">
+            <p class="help is-danger" *ngIf="(fund.dirty || fund.touched) && fund.invalid && fund.errors.required">Campaign fund is required</p>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Status:</label>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" value="true" name="status" formControlName="status">
+              On
+            </label>
+            <label class="radio">
+              <input type="radio" class="input-radio" value="false" name="status" formControlName="status">
+              Off
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Town:</label>
+          <div class="control">
+            <input type="text" class="input" formControlName="town" list="towns">
+            <datalist id="towns">
+              <option *ngFor="let town of towns" [value]="town">{{town}}</option>
+            </datalist>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Radius (/km):</label>
+          <div class="control">
+            <input type="number" class="input" formControlName="radius">
+            <p class="help is-danger" *ngIf="(radius.dirty || radius.touched) && radius.invalid && radius.errors.required">Radius is required</p>
+          </div>
+        </div>
+
+      <div class="field is-grouped" style="float: right;">
+        <div class="control">
+          <button class="button control-button-cancel" routerLink="/">Cancel</button>
+        </div>
+        <div class="control">
+          <button type="submit" class="button control-button-create" [disabled]="!campaign.valid">Create</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
