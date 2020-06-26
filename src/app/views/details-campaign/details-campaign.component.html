@@ -8,7 +8,7 @@
       <div *ngIf="campaign" class="campaign-content">
         <div class="campaign-items">
           <div class="campaign-item-content"><div class="campaign-label">Name</div><div class="campaign-item">{{campaign.name}}</div></div>
-          <div class="campaign-item-content"><div class="campaign-label">Keywords</div><div class="campaign-item">{{campaign.keywords}}{{campaign.keywords}}{{campaign.keywords}}{{campaign.keywords}}</div></div>
+          <div class="campaign-item-content"><div class="campaign-label">Keywords</div><div class="campaign-item">{{campaign.keywords}}</div></div>
           <div class="campaign-item-content"><div class="campaign-label">Bid amount</div><div class="campaign-item">{{campaign.bidAmount}} <span style="color:#a6a6a6">$</span></div></div>
           <div class="campaign-item-content"><div class="campaign-label">Campaign fund</div><div class="campaign-item">{{campaign.fund}} <span style="color:#a6a6a6">$</span></div></div>
           <div class="campaign-item-content"><div class="campaign-label">Status</div><div class="campaign-item"><span *ngIf="campaign.status">On</span><span *ngIf="!campaign.status">Off</span></div></div>
@@ -16,7 +16,7 @@
           <div class="campaign-item-content"><div class="campaign-label">Radius</div><div class="campaign-item">{{campaign.radius}} <span style="color:#a6a6a6">km</span></div></div>
         </div>
         <div class="campaign-buttons">
-          <button class="button" [routerLink]="['/lists', projectId, 'edit-campaign', campaign._id]">
+          <button class="button" [routerLink]="['edit']">
             <div class="icon">
               <i class="fas fa-edit"></i>
             </div>
@@ -31,7 +31,7 @@
       <div *ngIf="!campaign">
         There is no campaign for this project
       </div>
-        <button class="button back" routerLink='/projects'>Back</button>
+        <button class="button back" [routerLink]="['/projects', projectId]">Back</button>
     </div>
     <div>
     </div>
