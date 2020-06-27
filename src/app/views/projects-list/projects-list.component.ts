@@ -25,7 +25,6 @@ export class ProjectsListComponent implements OnInit {
           this.selectedProjectId = params.projectId;
           this.projectService.getCampaign(params.projectId).subscribe((campaign: Campaign[]) => {
             this.campaigns = campaign;
-            console.log(campaign);
           });
         } else {
           this.campaigns = undefined;
@@ -35,6 +34,13 @@ export class ProjectsListComponent implements OnInit {
 
     this.projectService.getProjects().subscribe((projects: any[]) => {
       this.projects = projects;
+    });
+  }
+
+  onDeleteProjectClick() {
+    this.projectService.deleteProject(this.selectedProjectId).subscribe((res: any) => {
+      console.log(res);
+      this.router.navigate(['/projects']);
     });
   }
 

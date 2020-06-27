@@ -1,5 +1,4 @@
-export class Campaign {
-  _id: string;
+export class FormCampaign {
   name: string;
   keywords: string;
   bidAmount: number;

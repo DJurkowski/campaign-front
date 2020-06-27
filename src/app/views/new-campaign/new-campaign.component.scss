@@ -1,0 +1,42 @@
+@import '../../../main-style.scss';
+
+
+.input {
+  &:focus {
+    border-color: $light-blue;
+  }
+}
+
+.label {
+  color: #5f5f5f;
+}
+
+.button {
+  &:hover {
+    color: white;
+    background: $primary;
+    border-color: white;
+  }
+}
+
+.control-button-cancel {
+  &:hover {
+    color: white;
+    background: $light-blue;
+    border-color: white;
+  }
+}
+
+.control-button-create {
+
+    &:hover {
+      color: white;
+      background: $primary;
+      border-color: white;
+    }
+}
+
+.help {
+  margin-bottom: 0;
+}
+
