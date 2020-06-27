@@ -47,4 +47,8 @@ export class ProjectService {
     return this.webRequestService.delete(`/projects/${projectId}/campaign/${campaignId}`);
   }
 
+  getEmerald(projectId: string) {
+    return this.webRequestService.get(`/projects/${projectId}/emerald`);
+  }
+
 }
