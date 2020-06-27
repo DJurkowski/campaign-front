@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { ProjectService } from './../../services/project.service';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { FormCampaign } from './../../models/formCampaign.module';
@@ -16,13 +16,15 @@ export class NewCampaignComponent implements OnInit {
   towns: string[];
   projectId: string;
 
+  emeraldFund: number;
+
   newCampaign: FormCampaign;
 
   campaign = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(1)]),
     keywords: new FormControl('', Validators.required),
     bidAmount: new FormControl('', Validators.required),
-    fund: new FormControl('', Validators.required),
+    fund: new FormControl(''),
     status: new FormControl('', Validators.required),
     town: new FormControl(''),
     radius: new FormControl('', Validators.required)
@@ -37,6 +39,14 @@ export class NewCampaignComponent implements OnInit {
       (params: Params) => {
         if (params.projectId) {
           this.projectId = params.projectId;
+
+          this.projectService.getEmerald(params.projectId).subscribe((emerald: any) => {
+            this.campaign.controls.fund.setValidators([
+              Validators.required,
+              (control: AbstractControl) => Validators.max(emerald[0].funds)(control)
+            ]);
+            this.emeraldFund = emerald[0].funds;
+          });
         }
       }
     );

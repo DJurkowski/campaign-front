@@ -28,23 +28,24 @@
           </div>
         </div>
         <div class="field">
-          <label class="label">Campaign Fund:</label>
+          <label class="label">Campaign Fund (Available funds: {{emeraldFund}}$):</label>
           <div class="control">
             <input type="number" class="input" formControlName="fund">
             <p class="help is-danger" *ngIf="(fund.dirty || fund.touched) && fund.invalid && fund.errors.required">Campaign fund is required</p>
+            <p class="help is-danger" *ngIf="fund.errors?.max">An insufficient amount of funds</p>
           </div>
         </div>
         <div class="field">
           <label class="label">Status:</label>
           <div class="control">
-            <label class="radio">
-              <input type="radio" value="true" name="status" formControlName="status">
-              On
-            </label>
-            <label class="radio">
-              <input type="radio" class="input-radio" value="false" name="status" formControlName="status">
-              Off
-            </label>
+            <div class="select">
+              <select formControlName="status" required>
+                <option value="" disabled>Select status</option>
+                <option value="true">On</option>
+                <option value="false">Off</option>
+              </select>
+            </div>
+            <p class="help is-danger" *ngIf="(status.dirty || status.touched) && status.invalid && status.errors.required">Status is required</p>
           </div>
         </div>
         <div class="field">
