@@ -7,5 +7,4 @@ export class Campaign {
   status: boolean;
   town: string;
   radius: number;
-
 }
