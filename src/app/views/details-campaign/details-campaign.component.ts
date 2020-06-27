@@ -37,7 +37,7 @@ export class DetailsCampaignComponent implements OnInit {
 
   onDeleteCampaignClick(campaign: string) {
     this.projectService.deleteCampaign(this.projectId, campaign).subscribe((res: any) => {
-      this.router.navigate(['projects']);
+      this.router.navigate(['projects', this.projectId]);
     });
   }
 
