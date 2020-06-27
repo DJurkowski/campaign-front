@@ -16,6 +16,7 @@ export class EditProjectComponent implements OnInit {
   constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
     this.route.params.subscribe(
       (params: Params) => {
         this.projectId = params.projectId;
