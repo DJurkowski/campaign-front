@@ -25,7 +25,6 @@ export class ProjectsListComponent implements OnInit {
           this.selectedProjectId = params.projectId;
           this.projectService.getCampaign(params.projectId).subscribe((campaign: Campaign[]) => {
             this.campaigns = campaign;
-            console.log(campaign);
           });
         } else {
           this.campaigns = undefined;
