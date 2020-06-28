@@ -7,7 +7,6 @@
       <div class="project-menu">
         <a href="" class="project-item" *ngFor="let project of projects" [routerLink]="['/projects', project._id]" routerLinkActive="is-active">{{project.name}}</a>
       </div>
-
       <button class="button project-button" routerLink="/new-project">Add Project</button>
 
     </div>
