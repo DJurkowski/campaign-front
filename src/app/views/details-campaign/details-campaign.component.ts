@@ -1,6 +1,7 @@
 import { Campaign } from './../../models/campaign.module';
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/services/project.service';
+import { AlertService } from './../../services/alert.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
@@ -13,7 +14,11 @@ export class DetailsCampaignComponent implements OnInit {
   campaign: Campaign;
   projectId: string;
 
-  constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private projectService: ProjectService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -36,9 +41,15 @@ export class DetailsCampaignComponent implements OnInit {
   }
 
   onDeleteCampaignClick(campaign: string) {
-    this.projectService.deleteCampaign(this.projectId, campaign).subscribe((res: any) => {
-      this.router.navigate(['projects', this.projectId]);
-    });
+    this.projectService.deleteCampaign(this.projectId, campaign).subscribe(
+      (res: any) => {
+        this.alertService.success(res.msg);
+        this.router.navigate(['projects', this.projectId]);
+      },
+      error => {
+        this.alertService.error(error.msg);
+      }
+    );
   }
 
 }

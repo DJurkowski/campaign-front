@@ -1,5 +1,6 @@
-import { ProjectService } from './../../services/project.service';
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from './../../services/project.service';
+import { AlertService } from './../../services/alert.service';
 import { Campaign } from './../../models/campaign.module';
 import { Project } from './../../models/project.module';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -16,7 +17,11 @@ export class ProjectsListComponent implements OnInit {
 
   selectedProjectId: string;
 
-  constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private projectService: ProjectService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -39,7 +44,7 @@ export class ProjectsListComponent implements OnInit {
 
   onDeleteProjectClick() {
     this.projectService.deleteProject(this.selectedProjectId).subscribe((res: any) => {
-      console.log(res);
+      this.alertService.success(res.msg);
       this.router.navigate(['/projects']);
     });
   }
