@@ -27,57 +27,51 @@
         <p class="help is-danger" *ngIf="(keywords.dirty || keywords.touched) && keywords.invalid && keywords.errors.required">Keywords are required</p>
 
       </div>
-        <!-- <div class="field">
-          <label class="label">Keywords:</label>
-          <div class="control">
-            <input type="text" class="input" formControlName="keywords">
-            <p class="help is-danger" *ngIf="(keywords.dirty || keywords.touched) && keywords.invalid && keywords.errors.required">Keywords are required</p>
-          </div>
-        </div> -->
-        <div class="field">
-          <label class="label">Bid Amount:</label>
-          <div class="control">
-            <input type="number" class="input" formControlName="bidAmount">
-            <p class="help is-danger" *ngIf="(bidAmount.dirty || bidAmount.touched) && bidAmount.invalid && bidAmount.errors.required">Bid amount is required</p>
-          </div>
+      <div class="field">
+        <label class="label">Bid Amount (min. Bid Amount: {{minBidAmount}} $):</label>
+        <div class="control">
+          <input type="number" class="input" formControlName="bidAmount">
+          <p class="help is-danger" *ngIf="(bidAmount.dirty || bidAmount.touched) && bidAmount.invalid && bidAmount.errors.required">Bid amount is required</p>
+          <p class="help is-danger" *ngIf="bidAmount.errors?.min">Given amount it too low</p>
         </div>
-        <div class="field">
-          <label class="label">Campaign Fund (Available funds: {{emeraldFund}}$):</label>
-          <div class="control">
-            <input type="number" class="input" formControlName="fund">
-            <p class="help is-danger" *ngIf="(fund.dirty || fund.touched) && fund.invalid && fund.errors.required">Campaign fund is required</p>
-            <p class="help is-danger" *ngIf="fund.errors?.max">An insufficient amount of funds</p>
-          </div>
+      </div>
+      <div class="field">
+        <label class="label">Campaign Fund (Available funds: {{emeraldFund}} $):</label>
+        <div class="control">
+          <input type="number" class="input" formControlName="fund">
+          <p class="help is-danger" *ngIf="(fund.dirty || fund.touched) && fund.invalid && fund.errors.required">Campaign fund is required</p>
+          <p class="help is-danger" *ngIf="fund.errors?.max">An insufficient amount of funds</p>
         </div>
-        <div class="field">
-          <label class="label">Status:</label>
-          <div class="control">
-            <div class="select">
-              <select formControlName="status" required>
-                <option value="" disabled>Select status</option>
-                <option value="true">On</option>
-                <option value="false">Off</option>
-              </select>
-            </div>
-            <p class="help is-danger" *ngIf="(status.dirty || status.touched) && status.invalid && status.errors.required">Status is required</p>
+      </div>
+      <div class="field">
+        <label class="label">Status:</label>
+        <div class="control">
+          <div class="select">
+            <select formControlName="status" required>
+              <option value="" disabled>Select status</option>
+              <option value="true">On</option>
+              <option value="false">Off</option>
+            </select>
           </div>
+          <p class="help is-danger" *ngIf="(status.dirty || status.touched) && status.invalid && status.errors.required">Status is required</p>
         </div>
-        <div class="field">
-          <label class="label">Town:</label>
-          <div class="control">
-            <input type="text" class="input" formControlName="town" list="towns">
-            <datalist id="towns" >
-              <option *ngFor="let town of towns" [value]="town">{{town}}</option>
-            </datalist>
-          </div>
+      </div>
+      <div class="field">
+        <label class="label">Town:</label>
+        <div class="control">
+          <input type="text" class="input" formControlName="town" list="towns">
+          <datalist id="towns" >
+            <option *ngFor="let town of towns" [value]="town">{{town}}</option>
+          </datalist>
         </div>
-        <div class="field">
-          <label class="label">Radius (/km):</label>
-          <div class="control">
-            <input type="number" class="input" formControlName="radius">
-            <p class="help is-danger" *ngIf="(radius.dirty || radius.touched) && radius.invalid && radius.errors.required">Radius is required</p>
-          </div>
+      </div>
+      <div class="field">
+        <label class="label">Radius (/km):</label>
+        <div class="control">
+          <input type="number" class="input" formControlName="radius">
+          <p class="help is-danger" *ngIf="(radius.dirty || radius.touched) && radius.invalid && radius.errors.required">Radius is required</p>
         </div>
+      </div>
 
       <div class="field is-grouped" style="float: right;">
         <div class="control">

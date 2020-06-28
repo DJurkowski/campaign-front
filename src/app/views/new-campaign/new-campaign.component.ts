@@ -19,16 +19,14 @@ export class NewCampaignComponent implements OnInit {
   popkeywords: NgOption[];
   projectId: string;
 
-  selectedKeywords = [];
-  selectedKeywordId: number;
-
   emeraldFund: number;
+  minBidAmount: number;
   newCampaign: FormCampaign;
 
   campaign = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(1)]),
     keywords: new FormControl('', Validators.required),
-    bidAmount: new FormControl('', Validators.required),
+    bidAmount: new FormControl(''),
     fund: new FormControl(''),
     status: new FormControl('', Validators.required),
     town: new FormControl(''),
@@ -51,7 +49,12 @@ export class NewCampaignComponent implements OnInit {
               Validators.required,
               (control: AbstractControl) => Validators.max(emerald[0].funds)(control)
             ]);
+            this.campaign.controls.bidAmount.setValidators([
+              Validators.required,
+              (control: AbstractControl) => Validators.min(Math.ceil(emerald[0].funds * 0.3))(control)
+            ]);
             this.emeraldFund = emerald[0].funds;
+            this.minBidAmount = Math.ceil(emerald[0].funds * 0.3);
           });
         }
       }
@@ -67,15 +70,6 @@ export class NewCampaignComponent implements OnInit {
       this.router.navigate(['/projects', this.projectId]);
     });
   }
-
-  onAdd = ($event: any): void => {
-    this.selectedKeywords.push($event);
-  }
-
-  onRemove = ($event: any): void => {
-    this.selectedKeywords = this.selectedKeywords.filter( keyword => keyword.id !== $event.value.id);
-  }
-
 
   // Getters
 
