@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/services/project.service';
+import { AlertService } from './../../services/alert.service';
 import { Validators, FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
 import { Campaign } from './../../models/campaign.module';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -32,7 +33,11 @@ export class EditCampaignComponent implements OnInit {
 
   towns: string[];
 
-  constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute ) { }
+  constructor(
+    private projectService: ProjectService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.towns = TOWNS;
@@ -72,7 +77,8 @@ export class EditCampaignComponent implements OnInit {
   }
 
   onSubmit() {
-    this.projectService.editCampaign(this.projectId, this.campaignId, this.campaignForm.value).subscribe(() => {
+    this.projectService.editCampaign(this.projectId, this.campaignId, this.campaignForm.value).subscribe((res: any) => {
+      this.alertService.success(res.msg);
       this.router.navigate(['/projects', this.projectId, 'campaign', this.campaignId]);
     });
   }
