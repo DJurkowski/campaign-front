@@ -4,11 +4,14 @@
       Create a new project
     </h2>
 
-    <input #projectNameInput class="input has-background-light is-normal" type="text" placeholder="Enter project name..." required>
+    <!-- <input #projectNameInput class="input has-background-light is-normal" type="text" placeholder="Enter project name..." required> -->
+    <input [(ngModel)]="projectName" #name="ngModel" class="input has-background-light is-normal" type="text" placeholder="Enter project name..." required >
+    <p class="help is-danger" *ngIf="(name.dirty || name.touched) && name.invalid && name.errors.required">Name is required</p>
+
 
     <div class="buttons is-right">
-      <button class="button is-normal" routerLink="/">Back</button>
-      <button class="button is-normal is-primary has-text-white" (click)="createProject(projectNameInput.value)">Create</button>
+      <button class="button is-normal back-button" routerLink="/">Back</button>
+      <button class="button is-normal is-primary has-text-white" [disabled]="!name.valid" (click)="createProject()">Create</button>
     </div>
 
   </div>

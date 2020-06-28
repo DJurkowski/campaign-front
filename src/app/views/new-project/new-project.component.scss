@@ -3,3 +3,12 @@
 .buttons {
   margin-top: 15px;
 }
+
+.back-button {
+
+  &:hover {
+    background: $light-blue;
+    color: white;
+    border: white;
+  }
+}
