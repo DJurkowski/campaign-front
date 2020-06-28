@@ -12,6 +12,9 @@ import { NewCampaignComponent } from './views/new-campaign/new-campaign.componen
 import { EditCampaignComponent } from './views/edit-campaign/edit-campaign.component';
 import { EditProjectComponent } from './views/edit-project/edit-project.component';
 
+import { AlertService } from './services/alert.service';
+import { AlertComponent } from './views/alert/alert.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +23,8 @@ import { EditProjectComponent } from './views/edit-project/edit-project.componen
     DetailsCampaignComponent,
     NewCampaignComponent,
     EditCampaignComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,7 @@ import { EditProjectComponent } from './views/edit-project/edit-project.componen
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
