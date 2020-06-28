@@ -1,14 +1,14 @@
 # Campaign application
 
-Campaign is a web application where you can create your strategy for any type of yours campaigns.
-Application allows you to create project and his campaign specification. 
+Campaign is a web application where you can create your strategy for any type of campaign.
+Application allows you to create / edit / delete project and his dedicated campaign.
 
 
 ## Build With
 
 * [Angular](https://angular.io/) - Angular in version 9
 * [MongoDB](https://www.mongodb.com/) - Database for modern apps
-* [TypeScript]
+* [TypeScript](https://www.typescriptlang.org/) - TypeScript in version 3.8
 
 ## Installation
 
