@@ -4,9 +4,10 @@ import { AlertService } from './../../services/alert.service';
 import { Validators, FormGroup, FormBuilder, FormControl, AbstractControl } from '@angular/forms';
 import { Campaign } from './../../models/campaign.module';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { NgOption } from '@ng-select/ng-select';
 
 import { TOWNS } from './../../utils/towns';
-
+import { POPKEYOWRDS } from './../../utils/popularkeywords';
 
 @Component({
   selector: 'app-edit-campaign',
@@ -32,6 +33,7 @@ export class EditCampaignComponent implements OnInit {
   });
 
   towns: string[];
+  popkeywords: NgOption[];
 
   constructor(
     private projectService: ProjectService,
@@ -41,6 +43,8 @@ export class EditCampaignComponent implements OnInit {
 
   ngOnInit() {
     this.towns = TOWNS;
+    this.popkeywords = POPKEYOWRDS;
+
     this.route.params.subscribe(
       (params: Params) => {
         this.projectId = params.projectId;
