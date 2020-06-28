@@ -132,10 +132,7 @@
     &:active {
       transform: scale(0.95);
     }
-  }
 
-  &.complete .campaign-text {
-    text-decoration: line-through;
   }
 
   .campaign-buttons {
@@ -156,6 +153,10 @@
       }
 
     }
+  }
+
+  @media (max-width: 415px) {
+    flex-direction: column;
   }
 }
 
@@ -186,4 +187,11 @@
     background-color: $light-blue;
     border-radius: 2px;
   }
+}
+
+.empty-state-text {
+  box-shadow: 0 0 0 5px #eee;
+  padding: 15px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
 }
