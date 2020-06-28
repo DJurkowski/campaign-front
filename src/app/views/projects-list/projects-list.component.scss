@@ -113,26 +113,22 @@
   padding: 15px 20px;
   border-radius: 5px;
   margin-top: 10px;
+  box-shadow: 0 0 0 5px #eee;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
   cursor: pointer;
 
-  box-shadow: 0 0 0 5px #eee;
+  &:hover {
+    box-shadow: 0 0 0 5px $light-blue;
 
-  &:not(.complete){
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-
-    &:hover {
-      box-shadow: 0 0 0 5px $light-blue;
-
-      .campaign-buttons {
-        opacity: 1;
-        transform: scale(1);
-      }
+    .campaign-buttons {
+      opacity: 1;
+      transform: scale(1);
     }
+  }
 
-    &:active {
-      transform: scale(0.95);
-    }
-
+  &:active {
+    transform: scale(0.95);
   }
 
   .campaign-buttons {
