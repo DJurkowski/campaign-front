@@ -8,7 +8,7 @@
       <div *ngIf="campaign" class="campaign-content">
         <div class="campaign-items">
           <div class="campaign-item-content"><div class="campaign-label">Name</div><div class="campaign-item">{{campaign.name}}</div></div>
-          <div class="campaign-item-content"><div class="campaign-label">Keywords</div><div class="campaign-item">{{campaign.keywords}}</div></div>
+          <div class="campaign-item-content"><div class="campaign-label">Keywords</div><div class="campaign-item"><span *ngFor="let keyword of campaign.keywords">{{keyword.name}} </span></div></div>
           <div class="campaign-item-content"><div class="campaign-label">Bid amount</div><div class="campaign-item">{{campaign.bidAmount}} <span style="color:#a6a6a6">$</span></div></div>
           <div class="campaign-item-content"><div class="campaign-label">Campaign fund</div><div class="campaign-item">{{campaign.fund}} <span style="color:#a6a6a6">$</span></div></div>
           <div class="campaign-item-content"><div class="campaign-label">Status</div><div class="campaign-item"><span *ngIf="campaign.status">On</span><span *ngIf="!campaign.status">Off</span></div></div>

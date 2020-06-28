@@ -1,6 +1,6 @@
 export class FormCampaign {
   name: string;
-  keywords: string;
+  keywords: [{ name: string }];
   bidAmount: number;
   fund: number;
   status: boolean;

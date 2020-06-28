@@ -7,7 +7,6 @@
       <div class="project-menu">
         <a href="" class="project-item" *ngFor="let project of projects" [routerLink]="['/projects', project._id]" routerLinkActive="is-active">{{project.name}}</a>
       </div>
-
       <button class="button project-button" routerLink="/new-project">Add Project</button>
 
     </div>
@@ -25,11 +24,11 @@
             </button>
           </div>
           <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-            <div class="dropdown-content">
+            <div class="dropdown-content has-background-info" style="padding: 0;">
               <a [routerLink]="['edit']" class="dropdown-item">
                 Edit project
               </a>
-              <a (click)="onDeleteProjectClick()" class="dropdown-item has-text-danger">
+              <a (click)="onDeleteProjectClick()" class="dropdown-item">
                 Delete project
               </a>
             </div>

@@ -10,13 +10,17 @@ import { Project } from './../../models/project.module';
 })
 export class NewProjectComponent implements OnInit {
 
-  constructor(private projectService: ProjectService, private router: Router) { }
+  projectName: string;
+
+  constructor(private projectService: ProjectService, private router: Router) {
+    this.projectName = '';
+  }
 
   ngOnInit(): void {
   }
 
-  createProject(name: string) {
-    this.projectService.createProject(name).subscribe((project: Project) => {
+  createProject() {
+    this.projectService.createProject(this.projectName).subscribe((project: Project) => {
       this.router.navigate(['/projects', project._id]);
     });
   }

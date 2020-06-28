@@ -12,66 +12,71 @@
           <p class="help is-danger" *ngIf="(name.dirty || name.touched) && name.invalid && name.errors.required">Name is required</p>
         </div>
       </div>
-
-        <div class="field">
-          <label class="label">Keywords:</label>
-          <div class="control">
-            <input type="text" class="input" formControlName="keywords">
-            <p class="help is-danger" *ngIf="(keywords.dirty || keywords.touched) && keywords.invalid && keywords.errors.required">Keywords are required</p>
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Bid Amount:</label>
-          <div class="control">
-            <input type="number" class="input" formControlName="bidAmount">
-            <p class="help is-danger" *ngIf="(bidAmount.dirty || bidAmount.touched) && bidAmount.invalid && bidAmount.errors.required">Bid amount is required</p>
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Campaign Fund (Available funds: {{emeraldFund}}$):</label>
-          <div class="control">
-            <input type="number" class="input" formControlName="fund">
-            <p class="help is-danger" *ngIf="(fund.dirty || fund.touched) && fund.invalid && fund.errors.required">Campaign fund is required</p>
-            <p class="help is-danger" *ngIf="fund.errors?.max">An insufficient amount of funds</p>
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Status:</label>
-          <div class="control">
-            <div class="select">
-              <select formControlName="status">
-                <!-- <option [value]="status" disabled></option> -->
-                <option value="true">On</option>
-                <option value="false">Off</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Town:</label>
-          <div class="control">
-            <input type="text" class="input" formControlName="town" list="towns">
-            <datalist id="towns">
-              <option *ngFor="let town of towns" [value]="town">{{town}}</option>
-            </datalist>
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Radius (/km):</label>
-          <div class="control">
-            <input type="number" class="input" formControlName="radius">
-            <p class="help is-danger" *ngIf="(radius.dirty || radius.touched) && radius.invalid && radius.errors.required">Radius is required</p>
-          </div>
-        </div>
-
-      <div class="field is-grouped" style="float: right;">
+      <div class="field">
+        <label class="label">Keywords:</label>
+        <ng-select
+          [items]="popkeywords"
+          bindLabel="name"
+          [multiple]="true"
+          maxSelectedItems="5"
+          formControlName="keywords"
+          required
+          >
+        </ng-select>
+        <p class="help is-danger" *ngIf="(keywords.dirty || keywords.touched) && keywords.invalid && keywords.errors.required">Keywords are required</p>
+      </div>
+      <div class="field">
+        <label class="label">Bid Amount (min. Bid Amount: {{minBidAmount}} $):</label>
         <div class="control">
-          <button class="button control-button-cancel" routerLink="/">Cancel</button>
-        </div>
-        <div class="control">
-          <button type="submit" class="button control-button-create" [disabled]="!campaignForm.valid">Edit</button>
+          <input type="number" class="input" formControlName="bidAmount">
+          <p class="help is-danger" *ngIf="(bidAmount.dirty || bidAmount.touched) && bidAmount.invalid && bidAmount.errors.required">Bid amount is required</p>
+          <p class="help is-danger" *ngIf="bidAmount.errors?.min">Given amount it too low</p>
         </div>
       </div>
+      <div class="field">
+        <label class="label">Campaign Fund (Available funds: {{emeraldFund}}$):</label>
+        <div class="control">
+          <input type="number" class="input" formControlName="fund">
+          <p class="help is-danger" *ngIf="(fund.dirty || fund.touched) && fund.invalid && fund.errors.required">Campaign fund is required</p>
+          <p class="help is-danger" *ngIf="fund.errors?.max">An insufficient amount of funds</p>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Status:</label>
+        <div class="control">
+          <div class="select">
+            <select formControlName="status">
+              <option value="true">On</option>
+              <option value="false">Off</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Town:</label>
+        <div class="control">
+          <input type="text" class="input" formControlName="town" list="towns">
+          <datalist id="towns">
+            <option *ngFor="let town of towns" [value]="town">{{town}}</option>
+          </datalist>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Radius (/km):</label>
+        <div class="control">
+          <input type="number" class="input" formControlName="radius">
+          <p class="help is-danger" *ngIf="(radius.dirty || radius.touched) && radius.invalid && radius.errors.required">Radius is required</p>
+        </div>
+      </div>
+
+    <div class="field is-grouped" style="float: right;">
+      <div class="control">
+        <button class="button control-button-cancel" routerLink="/">Cancel</button>
+      </div>
+      <div class="control">
+        <button type="submit" class="button control-button-create" [disabled]="!campaignForm.valid">Edit</button>
+      </div>
+    </div>
 
     </form>
   </div>

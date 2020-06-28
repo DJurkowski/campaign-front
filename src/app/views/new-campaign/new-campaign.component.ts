@@ -3,8 +3,10 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 import { ProjectService } from './../../services/project.service';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { FormCampaign } from './../../models/formCampaign.module';
+import { NgOption } from '@ng-select/ng-select';
 
 import { TOWNS } from './../../utils/towns';
+import { POPKEYOWRDS } from './../../utils/popularkeywords';
 
 @Component({
   selector: 'app-new-campaign',
@@ -14,16 +16,17 @@ import { TOWNS } from './../../utils/towns';
 export class NewCampaignComponent implements OnInit {
 
   towns: string[];
+  popkeywords: NgOption[];
   projectId: string;
 
   emeraldFund: number;
-
+  minBidAmount: number;
   newCampaign: FormCampaign;
 
   campaign = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(1)]),
     keywords: new FormControl('', Validators.required),
-    bidAmount: new FormControl('', Validators.required),
+    bidAmount: new FormControl(''),
     fund: new FormControl(''),
     status: new FormControl('', Validators.required),
     town: new FormControl(''),
@@ -34,6 +37,7 @@ export class NewCampaignComponent implements OnInit {
 
   ngOnInit(): void {
     this.towns = TOWNS;
+    this.popkeywords = POPKEYOWRDS;
 
     this.route.params.subscribe(
       (params: Params) => {
@@ -45,7 +49,12 @@ export class NewCampaignComponent implements OnInit {
               Validators.required,
               (control: AbstractControl) => Validators.max(emerald[0].funds)(control)
             ]);
+            this.campaign.controls.bidAmount.setValidators([
+              Validators.required,
+              (control: AbstractControl) => Validators.min(Math.ceil(emerald[0].funds * 0.3))(control)
+            ]);
             this.emeraldFund = emerald[0].funds;
+            this.minBidAmount = Math.ceil(emerald[0].funds * 0.3);
           });
         }
       }
@@ -54,12 +63,15 @@ export class NewCampaignComponent implements OnInit {
 
   onSubmit() {
     this.newCampaign = this.campaign.value;
+    console.log(this.campaign.value);
 
     this.projectService.createCampaign(this.projectId, this.newCampaign).subscribe(() => {
 
       this.router.navigate(['/projects', this.projectId]);
     });
   }
+
+  // Getters
 
   get name() {
     return this.campaign.get('name');
