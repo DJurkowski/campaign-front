@@ -1,3 +1,4 @@
+import { AlertService } from './../../services/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/services/project.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -13,7 +14,11 @@ export class EditProjectComponent implements OnInit {
   projectId: string;
   name: string;
 
-  constructor(private projectService: ProjectService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private projectService: ProjectService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private alerService: AlertService ) { }
 
   ngOnInit() {
 
@@ -30,7 +35,9 @@ export class EditProjectComponent implements OnInit {
   }
 
   editProject() {
-    this.projectService.editProject(this.projectId, this.name).subscribe(() => {
+    this.projectService.editProject(this.projectId, this.name).subscribe((data) => {
+      console.log(data);
+      this.alerService.success(data.msg);
       this.router.navigate(['/projects', this.projectId]);
     });
   }
