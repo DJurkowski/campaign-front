@@ -1,0 +1,17 @@
+@import '../../../main-style.scss';
+
+.alert {
+  background: white;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 10px 10px 10px;
+}
+
+.alert-success {
+  color: $primary;
+}
+
+.alert-error {
+  color: $error;
+}
+
