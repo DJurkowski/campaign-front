@@ -3,8 +3,10 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 import { ProjectService } from './../../services/project.service';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { FormCampaign } from './../../models/formCampaign.module';
+import { NgOption } from '@ng-select/ng-select';
 
 import { TOWNS } from './../../utils/towns';
+import { POPKEYOWRDS } from './../../utils/popularkeywords';
 
 @Component({
   selector: 'app-new-campaign',
@@ -14,10 +16,13 @@ import { TOWNS } from './../../utils/towns';
 export class NewCampaignComponent implements OnInit {
 
   towns: string[];
+  popkeywords: NgOption[];
   projectId: string;
 
-  emeraldFund: number;
+  selectedKeywords = [];
+  selectedKeywordId: number;
 
+  emeraldFund: number;
   newCampaign: FormCampaign;
 
   campaign = new FormGroup({
@@ -34,6 +39,7 @@ export class NewCampaignComponent implements OnInit {
 
   ngOnInit(): void {
     this.towns = TOWNS;
+    this.popkeywords = POPKEYOWRDS;
 
     this.route.params.subscribe(
       (params: Params) => {
@@ -54,12 +60,24 @@ export class NewCampaignComponent implements OnInit {
 
   onSubmit() {
     this.newCampaign = this.campaign.value;
+    console.log(this.campaign.value);
 
     this.projectService.createCampaign(this.projectId, this.newCampaign).subscribe(() => {
 
       this.router.navigate(['/projects', this.projectId]);
     });
   }
+
+  onAdd = ($event: any): void => {
+    this.selectedKeywords.push($event);
+  }
+
+  onRemove = ($event: any): void => {
+    this.selectedKeywords = this.selectedKeywords.filter( keyword => keyword.id !== $event.value.id);
+  }
+
+
+  // Getters
 
   get name() {
     return this.campaign.get('name');
