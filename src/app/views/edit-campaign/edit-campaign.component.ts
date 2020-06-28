@@ -20,20 +20,22 @@ export class EditCampaignComponent implements OnInit {
   campaignId: string;
 
   emeraldFund: number;
+  minBidAmount: number;
+
+  towns: string[];
+  popkeywords: NgOption[];
 
   campaignForm = new FormGroup({
       _id: new FormControl(''),
       name: new FormControl('', [Validators.required, Validators.minLength(1)]),
       keywords: new FormControl('', Validators.required),
-      bidAmount: new FormControl('', Validators.required),
+      bidAmount: new FormControl(''),
       fund: new FormControl(''),
       status: new FormControl('', Validators.required),
       town: new FormControl(''),
       radius: new FormControl('', Validators.required)
   });
 
-  towns: string[];
-  popkeywords: NgOption[];
 
   constructor(
     private projectService: ProjectService,
@@ -55,7 +57,12 @@ export class EditCampaignComponent implements OnInit {
             Validators.required,
             (control: AbstractControl) => Validators.max(emerald[0].funds)(control)
           ]);
+          this.campaignForm.controls.bidAmount.setValidators([
+            Validators.required,
+            (control: AbstractControl) => Validators.min(Math.ceil(emerald[0].funds * 0.3))(control)
+          ]);
           this.emeraldFund = emerald[0].funds;
+          this.minBidAmount = Math.ceil(emerald[0].funds * 0.3);
         });
 
         this.getCampaign(params.projectId);
@@ -86,6 +93,8 @@ export class EditCampaignComponent implements OnInit {
       this.router.navigate(['/projects', this.projectId, 'campaign', this.campaignId]);
     });
   }
+
+  // Getters
 
   get name() {
     return this.campaignForm.get('name');
