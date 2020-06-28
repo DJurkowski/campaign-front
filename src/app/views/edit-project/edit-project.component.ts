@@ -12,7 +12,7 @@ import { Project } from 'src/app/models/project.module';
 export class EditProjectComponent implements OnInit {
 
   projectId: string;
-  name: string;
+  projectName: string;
 
   constructor(
     private projectService: ProjectService,
@@ -28,14 +28,14 @@ export class EditProjectComponent implements OnInit {
 
         this.projectService.getProject(params.projectId).subscribe((project: Project) => {
           console.log(project);
-          this.name = project.name;
+          this.projectName = project.name;
         });
       }
     );
   }
 
   editProject() {
-    this.projectService.editProject(this.projectId, this.name).subscribe((data) => {
+    this.projectService.editProject(this.projectId, this.projectName).subscribe((data) => {
       console.log(data);
       this.alerService.success(data.msg);
       this.router.navigate(['/projects', this.projectId]);
