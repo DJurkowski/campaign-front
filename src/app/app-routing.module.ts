@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'new-project', component: NewProjectComponent },
   { path: 'projects/:projectId/campaign/:campaignId', component: DetailsCampaignComponent },
   { path: 'projects/:projectId/campaign/:campaignId/edit', component: EditCampaignComponent },
+  { path: '**', redirectTo: 'projects'}
 ];
 
 @NgModule({
